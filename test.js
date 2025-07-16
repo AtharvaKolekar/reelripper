@@ -2,21 +2,31 @@
 import { ReelRipper } from './dist/index.js';
 
 const ripper = new ReelRipper();
+
 try {
-  // const id = await ripper.getProfileId("https://www.instagram.com/athxrva.xo");
-  // console.log(id);
+  // Get profile ID
+  const profileId = await ripper.getProfileId("https://www.instagram.com/googleindia");
+  console.log("🆔 Profile ID:", profileId);
 
-  // const urls = await ripper.getMediaURL("https://www.instagram.com/p/DK7fEw5xnqo/");
-  // console.log(urls);
+  // Get direct media URLs from a post
+  const mediaURLs = await ripper.getMediaURL("https://www.instagram.com/p/DK7fEw5xnqo/");
+  console.log("🎞️ Media URLs:", mediaURLs);
 
-  // const info = await ripper.getProfileInfo("athxrva.xo");
-  // console.log(info);
+  // Get basic profile info
+  const profileInfo = await ripper.getProfileInfo("netfilx");
+  console.log("📄 Profile Info:", profileInfo);
 
-  const mediaInfo = await ripper.getMediaInfo("https://www.instagram.com/p/DKT1NMiA1Rs/?igsh=cHQ0Y2xuemZ0OTkx", comments=true);
-  console.log(mediaInfo);
+  // Get full media info with comments
+  const mediaInfo = await ripper.getMediaInfo(
+    "https://www.instagram.com/p/DMAwPzWsdKK/",
+    true
+  );
+  console.log("📦 Media Info:", mediaInfo);
 
-  // await ripper.downloadMedia("https://www.instagram.com/reels/DLnJiIkvDqk/");
+  // Download a reel
+  await ripper.downloadMedia("https://www.instagram.com/reel/DL5Q8bAO5Dj/", "path-to-folder"<optional>);
+  console.log("✅ Reel downloaded successfully.");
 
-} catch (e) {
-  console.error(e);
+} catch (error) {
+  console.error("❌ Error:", error.message || error);
 }
